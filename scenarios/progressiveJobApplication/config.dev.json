@@ -1,9 +1,9 @@
 {
-	"inboundCallUrl" : "http://localhost:8090/api/inboundCalls/missedCall",
+	"inboundCallUrl" : "http://localhost:8090/api/inboundCalls/jobmissedCall",
 	"inboundCallCollection":"inboundCalls",
 	"outboundCallCollection":"outboundCallRequests",
+	"jobNumber":"",
 	"outboundSmsCollection":"",
-	"seekerRegNumber" : "08039534135",
 	"mongo" : {
 		"host" : "localhost",
 		"database" : "Telephony"

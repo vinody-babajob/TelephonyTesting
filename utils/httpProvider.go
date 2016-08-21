@@ -1,10 +1,8 @@
-package httpProvider
+package utils
 
 import (
-	"Babajob/Telephony.Utilities/logger"
 	"bytes"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -13,7 +11,6 @@ import (
 type HTTPProvider struct {
 	URL     string
 	Headers map[string]string
-	logger  logger.Logger
 }
 
 func (httpProvider *HTTPProvider) Get(queryParams map[string]string) (HTTPResponse, error) {
@@ -90,7 +87,6 @@ func (httpProvider *HTTPProvider) Post(data []byte) (HTTPResponse, error) {
 	httpResponse.Headers = response.Header
 
 	if err != nil {
-		httpProvider.logger.LogError(err.Error())
 	}
 
 	return httpResponse, nil
@@ -109,7 +105,6 @@ func (httpProvider *HTTPProvider) Delete() (HTTPResponse, error) {
 		request.Header.Set(headerKey, value)
 	}
 
-	httpProvider.logger.LogInfo(fmt.Sprintf("%+v", request))
 	client := &http.Client{}
 	response, err := client.Do(request)
 
@@ -139,6 +134,5 @@ func NewHTTPProvider(url string, header map[string]string) *HTTPProvider {
 	return &HTTPProvider{
 		URL:     url,
 		Headers: header,
-		logger:  logger.NewLogger(),
 	}
 }
