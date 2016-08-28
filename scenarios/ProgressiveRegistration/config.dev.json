@@ -2,6 +2,7 @@
 	"inboundCallUrl" : "http://localhost:8090/api/inboundCalls/missedCall",
 	"inboundCallCollection":"inboundCalls",
 	"outboundCallCollection":"outboundCallRequests",
+	"consumerKey":"DZdXZhkUx2qjom5YwJYc0PiBgIgcKI",
 	"outboundSmsCollection":"",
 	"seekerRegNumber" : "08039534135",
 	"mongo" : {

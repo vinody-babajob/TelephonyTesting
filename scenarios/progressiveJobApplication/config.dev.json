@@ -1,8 +1,13 @@
 {
-	"inboundCallUrl" : "http://localhost:8090/api/inboundCalls/jobmissedCall",
+	"inboundCallUrl" : "http://localhost:8090/api/inboundCalls/missedCall",
+	"getUserUrl" : "http://qa02api.babajob.com/v2/authentication/users",
+	"virtualNumberUrl" : "http://qa02api.babajob.com/v1/VirtualNumberAssociations/",
 	"inboundCallCollection":"inboundCalls",
 	"outboundCallCollection":"outboundCallRequests",
+	"consumerKey":"DZdXZhkUx2qjom5YwJYc0PiBgIgcKI",
 	"jobNumber":"",
+	"jobId":"2146301770",
+	"employerId":"7746517",
 	"outboundSmsCollection":"",
 	"mongo" : {
 		"host" : "localhost",

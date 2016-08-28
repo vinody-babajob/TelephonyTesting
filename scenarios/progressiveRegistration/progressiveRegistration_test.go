@@ -17,6 +17,8 @@ func TestSeekerRegistrationCall(t *testing.T) {
 		basePath,
 	)
 
+	ctime := time.Now().UTC()
+
 	inboundUrl := configurationReader.GetValue("inboundCallUrl")
 	toNum := configurationReader.GetValue("seekerRegNumber")
 
@@ -33,8 +35,6 @@ func TestSeekerRegistrationCall(t *testing.T) {
 	}
 
 	time.Sleep(time.Second * 10)
-
-	ctime := time.Now().UTC()
 
 	mongoConf := configurationReader.GetMapValue("mongo")
 	mongoDb := utils.NewMongoDBWithConfig(mongoConf)
@@ -64,7 +64,12 @@ func TestSeekerRegistrationCall(t *testing.T) {
 		t.Errorf("Trouble Getting repo for outboundCall with errors %q", outboundErr.Error())
 	}
 	outboundCalls := make([]models.OutboundCallRequest, 0, 1)
-	selector = bson.M{"MobileNumber": "07338466702", "CreatedAt": bson.M{"$gt": ctime.String()}}
+	selector = bson.M{
+		"$and": []interface{}{
+			bson.M{"mobilenumber": "07338466702"},
+			bson.M{"CreatedAt": bson.M{"$gte": ctime}},
+		},
+	}
 	err = outboundCallsRepo.Find(selector).All(&outboundCalls)
 	if err != nil {
 		defer outboundSession.Close()
